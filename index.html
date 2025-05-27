@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyBeatStore</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="logo">MyBeatStore</div>
+    <nav class="nav-links">
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="#kits">Drum Kits</a>
+    </nav>
+  </header>
+
+  <!-- Swiper Slider -->
+  <div class="album-cover">
+    <div class="swiper">
+      <div class="swiper-wrapper" id="swiper-wrapper">
+        <!-- Slides inserted via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-player">
+    <h1 id="song-title">Title</h1>
+    <p id="song-artist">Artist</p>
+
+    <audio id="song">
+      <source src="" type="audio/mpeg" />
+    </audio>
+
+    <input type="range" value="0" id="progress" />
+
+    <div class="controls">
+      <button class="backward"><i class="fa-solid fa-backward"></i></button>
+      <button class="play-pause-btn"><i class="fa-solid fa-play" id="controlIcon"></i></button>
+      <button class="forward"><i class="fa-solid fa-forward"></i></button>
+    </div>
+
+    <div class="time-stamps">
+      <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+    </div>
+
+    <div id="preview-time-label" class="preview-time-label">Preview max: 0:20</div>
+
+
+    <div class="buy-floating-panel" id="buyPanel">
+      <div class="buy-glass">
+        <span class="tag" id="price-tag">$0.00</span>
+        <h3 id="panel-title">Title – Artist</h3>
+        <p class="license">MP3 License</p>
+        <div class="panel-buttons">
+          <!-- the PayPal <script> tag must be loaded before you try to call paypal.Buttons().render() — otherwise paypal is undefined -->
+          <div class="panel-buttons">
+            <div id="paypal-button-container"></div>
+          </div>
+          <a class="btn green-glow" id="downloadBtn" download><i class="fa-solid fa-download"></i> Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="preview-notification">Preview ended. Please purchase to listen to full track.</div>
+
+
+<section class="kit-section">
+  <h2>Explore Our Kits</h2>
+  <div class="kit-carousel">
+    <button class="kit-arrow" onclick="scrollCards(-1)">&#8592;</button>
+
+    <div class="kit-cards" id="kitCards">
+      <div class="kit-card">
+        <img src="Images/lady.jpg" alt="Starter Kit Cover" style="height: 30%; width:35%; border-radius: 8px; margin-bottom: 1rem;">
+        <h3>Starter Kit</h3>
+        <span>$1.99</span>
+        <p style="font-size: 0.85rem;">
+    Get started with 100 essential WAV files: punchy kicks, crisp hats, sizzling shakers, classic claves & booming 808s.
+    <br><br>
+    ✅ For all levels<br>
+    ✅ Royalty-free<br>
+    ✅ Works in any DAW
+  </p>
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="sb-jei4e42298173@business.example.com">
+          <input type="hidden" name="item_name" value="Starter Kit">
+          <input type="hidden" name="custom" value="Starter_Kit.zip">
+          <input type="hidden" name="amount" value="1.99">
+          <input type="hidden" name="currency_code" value="USD">
+          <input type="submit" value="Buy Now with PayPal" style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; cursor: pointer;">
+          <input type="hidden" name="return" value="http://localhost:5000/thankyou?file=Starter_Kit.zip">
+        </form>
+      </div>
+      <!-- Coming Soon Kit -->
+  <div class="kit-card">
+    <img src="Images/comingsoon.jpg" alt="Coming Soon Kit" style="height: 30%; width:40%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
+    <h3>Pro Kit</h3>
+    <span>$0.0</span>
+    <p style="font-size: 0.85rem; font-style: italic; color: gray;">
+      Description coming soon.
+    </p>
+    <button disabled style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px; cursor: not-allowed;">
+      Coming Soon
+    </button>
+  </div>
+  <div class="kit-card">
+    <img src="Images/comingsoon.jpg" alt="Coming Soon Kit" style="height: 30%; width:40%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
+    <h3>Pro Kit</h3>
+    <span>$0.0</span>
+    <p style="font-size: 0.85rem; font-style: italic; color: gray;">
+      Description coming soon.
+    </p>
+    <button disabled style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px; cursor: not-allowed;">
+      Coming Soon
+    </button>
+  </div>
+  <div class="kit-card">
+    <img src="Images/comingsoon.jpg" alt="Coming Soon Kit" style="height: 30%; width:40%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
+    <h3>Pro Kit</h3>
+    <span>$0.0</span>
+    <p style="font-size: 0.85rem; font-style: italic; color: gray;">
+      Description coming soon.
+    </p>
+    <button disabled style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px; cursor: not-allowed;">
+      Coming Soon
+    </button>
+  </div>
+
+  
+
+    <button class="kit-arrow" onclick="scrollCards(1)">&#8594;</button>
+  </div>
+</section>
+
+<script>
+  function scrollCards(direction) {
+    const container = document.getElementById('kitCards');
+    const scrollAmount = 300;
+    container.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+
+<script>
+  function scrollCards(direction) {
+    const container = document.getElementById('kitCards');
+    const scrollAmount = 300; // Adjust as needed
+    container.scrollBy({
+      left: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="footer-bar">
+    <div class="footer-content">
+      <h2 class="footer-title">High quality trap beats for artists and creators.</h2>
+      <div class="footer-nav">
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Beats</a>
+          <a href="#">Sound Kits</a>
+          <a href="#">About</a>
+          <a href="#">FAQ</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="profile-picture">
+          <img src="Images/fennane.png" alt="Fennane Oussama" />
+        </div>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/fennaneoussama" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@FennaneOussama-Topic" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://web.facebook.com/profile.php?id=100092321281329" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

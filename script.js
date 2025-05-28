@@ -1,23 +1,26 @@
 // === Track List ===
 const trackFilenames = [
-  "Layla",
-  "Moon Over Damascus",
-  "violon808",
-  "Temple of Bass",
-  "Tears of the Minaret",
-  "Desert Mirage",
-  "Sandstep",
-  "Sand Spirit",
+  { name: "Layla", price: 7.99 },
+  { name: "Moon Over Damascus", price: 4.99 },
+  { name: "violon808", price: 4.99 },
+  { name: "Temple of Bass", price: 7.99 },
+  { name: "Tears of the Minaret", price: 7.99 },
+  { name: "Desert Mirage", price: 4.99 },
+  { name: "Sandstep", price: 4.99 },
+  { name: "Sand Spirit", price: 4.99 },
 ];
 
-const tracks = trackFilenames.map((name) => ({
+const tracks = trackFilenames.map(({ name, price }) => ({
   id: name.toLowerCase(),
   title: formatTitle(name),
   artist: "Asraelx Beats",
   mp3: `public-previews/${name}.mp3`,
   filename: name,
   image: `assets/${name}.jpeg`,
+  price: price,   // <-- Add price here
 }));
+
+
 tracks.forEach(track => {
   track.gumroadSlug = track.title.toLowerCase().replace(/\s+/g, '');
 });
@@ -82,6 +85,8 @@ function initSwiper() {
   });
 }
 
+const priceTag = document.getElementById("price-tag"); // assuming this element exists
+
 function loadTrack(index, autoplay = false) {
   if (index < 0 || index >= tracks.length) return;
   const track = tracks[index];
@@ -89,6 +94,10 @@ function loadTrack(index, autoplay = false) {
   songTitle.textContent = track.title;
   songArtist.textContent = track.artist;
   panelTitle.textContent = `${track.title} – ${track.artist}`;
+
+
+  priceTag.textContent = `$${track.price.toFixed(2)}`;
+
   downloadBtn.href = track.mp3;
 
   document.querySelectorAll(".swiper-slide").forEach((slide, i) => {

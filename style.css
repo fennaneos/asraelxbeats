@@ -25,16 +25,19 @@ body {
   min-height: 100vh;
   width: 100%;
   -webkit-backdrop-filter: blur(8px);
-  animation: slidein 120s forwards infinite alternate;
+    overflow-x: hidden; /* Prevent horizontal scroll on entire page */
+
+  /*animation: slidein 120s forwards infinite alternate;*/
 }
 
 header {
-  background-color: #111; /* slightly lighter than black */
+  background-color: #111;
   color: #fff;
-  padding: 20px;
+  padding: 160px 100px; /* more vertical space = header gets taller */
   text-align: center;
   border-bottom: 1px solid #333;
 }
+
 
 a {
   color: #fff;
@@ -59,12 +62,28 @@ a:hover {
 }
 
 .album-cover {
-  width: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  box-sizing: border-box;
+  overflow: visible; /* or remove overflow if unnecessary */
 }
+
 
 .swiper {
   width: 100%;
-  padding: 40px 0 100px;
+    max-width: 960px; /* 3 x 300px slides + 3 x 20px spacing */
+
+  overflow: visible; /* or remove overflow if unnecessary */
+}
+.swiper-slide {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.swiper-wrapper {
+  box-sizing: border-box;
 }
 
 .swiper-slide {
@@ -317,20 +336,20 @@ a:hover {
 }
 
 /**/
-.top-bar {
-  position: fixed;
-  top: 0;
+header {
   width: 100%;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
+  background-color: #111;
+  color: #fff;
+  padding: 60px 40px; /* Adjust to control header height */
+  text-align: center;
+  border-bottom: 1px solid #333;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
-  z-index: 1000;
-  color: white;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative; /* Remove fixed */
 }
+
 
 .logo {
   font-size: 1.5rem;
@@ -348,43 +367,78 @@ a:hover {
   text-decoration: underline;
 }
 /**/
+
+.kit-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  justify-items: center; /* center each card in its grid cell */
+  width: 100%;
+  max-width: 1100px; /* or whatever fits your layout */
+  margin: 0 auto; /* center the grid horizontally */
+  overflow: visible; /* no scrolling if not needed */
+}
+
 .kit-section {
   margin-top: 100px;
   padding: 2rem;
   width: 100%;
+  max-width: 1100px; /* limit content width */
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   color: var(--primary-clr);
 }
 
-.kit-section h2 {
-  font-size: 2rem;
+
+.kit-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.kit-card p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 1rem; /* increased bottom margin for spacing */
+}
+
+.kit-card span {
+  display: block;
+  font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.kit-carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+/* Style for button inside kit-card */
+.kit-card button {
+  background-color: #ff5c5c; /* Gumroad red */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-self: flex-start; /* button aligns left, or center if you want */
+  white-space: nowrap; /* prevent button text wrapping */
 }
 
-.kit-cards {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  padding: 1rem 0;
-  scroll-behavior: smooth;
+.kit-card button:hover {
+  background-color: #ff2f2f;
 }
 
 .kit-card {
-  min-width: 250px;
+  min-width: 300px; /* increase width */
+  max-width: 350px; /* prevent too wide */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem; /* more vertical padding */
   color: white;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .kit-card h3 {
@@ -394,23 +448,33 @@ a:hover {
 .kit-card p {
   font-size: 0.9rem;
   opacity: 0.8;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem; /* increased bottom margin for spacing */
 }
 
 .kit-card span {
   display: block;
   font-weight: bold;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
-.kit-arrow {
-  background: none;
-  border: none;
+/* Style for button inside kit-card */
+.kit-card button {
+  background-color: #ff5c5c; /* Gumroad red */
   color: white;
-  font-size: 2rem;
+  border: none;
+  padding: 0.75rem 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 1rem;
+  transition: background 0.3s ease;
+  align-self: flex-start; /* button aligns left, or center if you want */
+  white-space: nowrap; /* prevent button text wrapping */
 }
+
+.kit-card button:hover {
+  background-color: #ff2f2f;
+}
+
 
 
 /**/
@@ -543,6 +607,94 @@ a:hover {
 #preview-notification.show {
   opacity: 1;
   pointer-events: auto;
+}
+
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #aaa;
+}
+
+button {
+  background-color: #222;
+  color: white;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+.card {
+  background-color: #111;
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  
+  /* Added min-height & flex to fix text/button overflow */
+  min-height: 180px; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Inputs */
+input[type="text"], input[type="email"] {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.logo-img {
+  height: 250px; /* or even 120px */
+  width: auto;
+    margin-left: 9rem; /* Increase this value as needed */
+
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
 }
 
 

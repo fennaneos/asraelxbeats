@@ -18,6 +18,9 @@ const tracks = trackFilenames.map((name) => ({
   filename: name,
   image: `assets/${name}.jpeg`,
 }));
+tracks.forEach(track => {
+  track.gumroadSlug = track.title.toLowerCase().replace(/\s+/g, '');
+});
 
 function formatTitle(filename) {
   return filename
@@ -72,13 +75,12 @@ function initSwiper() {
     spaceBetween: 20,
     centeredSlides: false,
     loop: false,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
   });
 }
-
 
 function loadTrack(index, autoplay = false) {
   if (index < 0 || index >= tracks.length) return;
@@ -92,6 +94,10 @@ function loadTrack(index, autoplay = false) {
   document.querySelectorAll(".swiper-slide").forEach((slide, i) => {
     slide.classList.toggle("active-track", i === index);
   });
+
+  // Update the Gumroad URL in a data attribute instead of href:
+  const gumroadBtn = document.querySelector('.gumroad-button');
+  gumroadBtn.dataset.gumroad = `https://asraelx.gumroad.com/l/${track.gumroadSlug}`;
 
   audio.src = track.mp3;
   audio.load();
@@ -123,13 +129,18 @@ function togglePlayPause() {
 function forwardTrack() {
   currentIndex = (currentIndex + 1) % tracks.length;
   loadTrack(currentIndex, true);
-  if (swiper) swiper.slideTo(currentIndex); // Sync swiper position
+
+  // Try triggering next button click instead
+  const nextBtn = document.querySelector('.swiper-button-next');
+  if (nextBtn) nextBtn.click();
 }
 
 function backwardTrack() {
   currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
   loadTrack(currentIndex, true);
-  if (swiper) swiper.slideTo(currentIndex); // Sync swiper position
+
+  const prevBtn = document.querySelector('.swiper-button-prev');
+  if (prevBtn) prevBtn.click();
 }
 
 audio.addEventListener("loadedmetadata", () => {
@@ -156,3 +167,15 @@ function formatTime(seconds) {
 playPauseBtn.addEventListener("click", togglePlayPause);
 document.querySelector(".forward").addEventListener("click", forwardTrack);
 document.querySelector(".backward").addEventListener("click", backwardTrack);
+
+// === Gumroad button click handler ===
+const gumroadBtn = document.querySelector('.gumroad-button');
+
+// Set href="#" to prevent default navigation. (Ensure your HTML has href="#" for this button)
+gumroadBtn.href = '#';
+
+gumroadBtn.addEventListener('click', (e) => {
+  e.preventDefault(); // Prevent default anchor navigation
+  const gumroadURL = gumroadBtn.dataset.gumroad || 'https://asraelx.gumroad.com/l/layla'; // fallback
+  window.open(gumroadURL + '?t=' + Date.now(), '_blank');
+});

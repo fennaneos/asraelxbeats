@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MyBeatStore</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <!-- Swiper CSS -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/swiper/swiper-bundle.min.css"
-/>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-<!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <link rel="stylesheet" href="./style.css" />
   <!-- Gumroad JS -->
   <script src="https://gumroad.com/js/gumroad.js"></script>
   <style>
     /* Album cover container limits width to avoid horizontal overflow */
-.album-cover {
-  max-width: 960px; /* 3 slides x 300px each + gaps */
-  margin: 2rem auto;
-  position: relative;
-  overflow: visible; /* allow slide shadows if any */
-}
+    .album-cover {
+      max-width: 960px;
+      /* 3 slides x 300px each + gaps */
+      margin: 2rem auto;
+      position: relative;
+      overflow: visible;
+      /* allow slide shadows if any */
+    }
 
-/* Swiper container full width inside album-cover */
-.album-cover .swiper {
-  width: 100%;
-  overflow: hidden;
-}
+    /* Swiper container full width inside album-cover */
+    .album-cover .swiper {
+      width: 100%;
+      overflow: hidden;
+    }
 
-/* Make sure wrapper uses box-sizing */
-.album-cover .swiper-wrapper {
-  box-sizing: border-box;
-}
+    /* Make sure wrapper uses box-sizing */
+    .album-cover .swiper-wrapper {
+      box-sizing: border-box;
+    }
 
-/* Fixed width per slide for exact 3 visible */
-.album-cover .swiper-slide {
-  width: 300px !important; /* fixed slide width */
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  height: 200px; /* adjust to your images */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    /* Fixed width per slide for exact 3 visible */
+    .album-cover .swiper-slide {
+      width: 300px !important;
+      /* fixed slide width */
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 200px;
+      /* adjust to your images */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Images inside slides */
-.album-cover .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    /* Images inside slides */
+    .album-cover .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-/* Navigation arrows styling */
-.album-cover .swiper-button-next,
-.album-cover .swiper-button-prev {
-  color: #000;
-  top: 40%;
-  width: 27px;
-  height: 44px;
-}
-
-    </style>
+    /* Navigation arrows styling */
+    .album-cover .swiper-button-next,
+    .album-cover .swiper-button-prev {
+      color: #000;
+      top: 40%;
+      width: 27px;
+      height: 44px;
+    }
+  </style>
 </head>
+
 <body>
   <!-- Top Bar -->
   <header class="top-bar">
@@ -84,8 +86,8 @@
   <div class="album-cover">
     <div class="swiper">
       <div class="swiper-wrapper" id="swiper-wrapper"></div>
-          <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </div>
 
@@ -93,7 +95,9 @@
   <div class="music-player">
     <h1 id="song-title">Title</h1>
     <p id="song-artist">Artist</p>
-    <audio id="song"><source src="" type="audio/mpeg" /></audio>
+    <audio id="song">
+      <source src="" type="audio/mpeg" />
+    </audio>
     <input type="range" value="0" id="progress" />
     <div class="controls">
       <button class="backward"><i class="fa-solid fa-backward"></i></button>
@@ -113,7 +117,10 @@
         <div class="panel-buttons">
           <div id="paypal-button-container"></div>
           <a class="btn green-glow" id="downloadBtn" download><i class="fa-solid fa-download"></i> Download Preview</a>
-          <a class="gumroad-button" href="https://asraelx.gumroad.com/l/violon808" target="_blank" style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block;">Buy Now on</a>
+          <a class="gumroad-button" href="#" target="_blank"
+            style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block;">
+            Buy Now on
+          </a>
         </div>
       </div>
     </div>
@@ -122,59 +129,71 @@
   <div id="preview-notification">Preview ended. Please purchase to listen to full track.</div>
 
   <!-- Kits Section -->
-<!-- Kits Section -->
-<section class="kit-section" id="kits">
-  <h2>Explore Our Kits</h2>
-  <div class="swiper kit-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide kit-card">
-        <img src="assets/lady.jpg" alt="Starter Kit Cover" style="height: 30%; width:30%; border-radius: 8px; margin-bottom: 1rem;">
-        <h3>Starter Kit</h3>
-        <span>$1.99</span>
-        <p style="font-size: 0.85rem;">
-          100 WAV essentials: kicks, hats, shakers, claves & 808s.<br><br>
-          ✅ For all levels<br>
-          ✅ Royalty-free<br>
-          ✅ Works in any DAW
-        </p>
-        <a class="gumroad-button" href="https://asraelx.gumroad.com/l/violon808" target="_blank" style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block;">Buy Now on</a>
+  <!-- Kits Section -->
+  <section class="kit-section" id="kits">
+    <h2>Explore Our Kits</h2>
+    <div class="swiper kit-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide kit-card">
+          <img src="assets/lady.jpg" alt="Starter Kit Cover"
+            style="height: 30%; width:30%; border-radius: 8px; margin-bottom: 1rem;">
+          <h3>Starter Kit</h3>
+          <span>$1.99</span>
+          <p style="font-size: 0.85rem;">
+            100 WAV essentials: kicks, hats, shakers, claves & 808s.<br><br>
+            ✅ For all levels<br>
+            ✅ Royalty-free<br>
+            ✅ Works in any DAW
+          </p>
+          <a class="gumroad-button" href="https://asraelx.gumroad.com/l/violon808" target="_blank"
+            style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block;">Buy
+            Now on</a>
+        </div>
+
+        <!-- Coming Soon Kits -->
+        <div class="swiper-slide kit-card">
+          <img src="assets/comingsoon.jfif" alt="Coming Soon Kit"
+            style="height: 30%; width:50%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
+          <h3>Pro Kit</h3>
+          <span>$0.00</span>
+          <p style="font-size: 0.85rem; font-style: italic; color: gray;">Description coming soon.</p>
+          <button disabled
+            style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px;">Coming
+            Soon</button>
+        </div>
+
+        <!-- Duplicate or additional slides -->
+        <div class="swiper-slide kit-card">
+          <img src="assets/comingsoon.jfif" alt="Coming Soon Kit"
+            style="height: 30%; width:50%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
+          <h3>Pro Kit</h3>
+          <span>$0.00</span>
+          <p style="font-size: 0.85rem; font-style: italic; color: gray;">Description coming soon.</p>
+          <button disabled
+            style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px;">Coming
+            Soon</button>
+        </div>
+
+        <div class="swiper-slide kit-card">
+          <img src="assets/comingsoon.jfif" alt="Coming Soon Kit"
+            style="height: 30%; width:50%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
+          <h3>Pro Kit</h3>
+          <span>$0.00</span>
+          <p style="font-size: 0.85rem; font-style: italic; color: gray;">Description coming soon.</p>
+          <button disabled
+            style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px;">Coming
+            Soon</button>
+        </div>
+
+
+        <!-- Add more slides as needed... -->
       </div>
 
-      <!-- Coming Soon Kits -->
-      <div class="swiper-slide kit-card">
-        <img src="assets/comingsoon.jfif" alt="Coming Soon Kit" style="height: 30%; width:50%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
-        <h3>Pro Kit</h3>
-        <span>$0.00</span>
-        <p style="font-size: 0.85rem; font-style: italic; color: gray;">Description coming soon.</p>
-        <button disabled style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px;">Coming Soon</button>
-      </div>
-
-      <!-- Duplicate or additional slides -->
-      <div class="swiper-slide kit-card">
-        <img src="assets/comingsoon.jfif" alt="Coming Soon Kit" style="height: 30%; width:50%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
-        <h3>Pro Kit</h3>
-        <span>$0.00</span>
-        <p style="font-size: 0.85rem; font-style: italic; color: gray;">Description coming soon.</p>
-        <button disabled style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px;">Coming Soon</button>
-      </div>
-
-            <div class="swiper-slide kit-card">
-        <img src="assets/comingsoon.jfif" alt="Coming Soon Kit" style="height: 30%; width:50%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.6;">
-        <h3>Pro Kit</h3>
-        <span>$0.00</span>
-        <p style="font-size: 0.85rem; font-style: italic; color: gray;">Description coming soon.</p>
-        <button disabled style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ccc; color: #666; font-weight: bold; border-radius: 5px;">Coming Soon</button>
-      </div>
-
-
-      <!-- Add more slides as needed... -->
+      <!-- Swiper Navigation -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
-
-    <!-- Swiper Navigation -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  </div>
-</section>
+  </section>
 
 
   <!-- Footer -->
@@ -195,8 +214,10 @@
         </div>
         <div class="footer-socials">
           <a href="https://www.instagram.com/fennaneoussama" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.youtube.com/@FennaneOussama-Topic" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-          <a href="https://web.facebook.com/profile.php?id=100092321281329" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.youtube.com/@FennaneOussama-Topic" target="_blank"><i
+              class="fa-brands fa-youtube"></i></a>
+          <a href="https://web.facebook.com/profile.php?id=100092321281329" target="_blank"><i
+              class="fa-brands fa-x-twitter"></i></a>
           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
@@ -214,4 +235,5 @@
     }
   </script>
 </body>
+
 </html>

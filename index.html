@@ -14,8 +14,7 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <link rel="stylesheet" href="./style.css" />
-  <!-- Gumroad JS -->
-  <script src="https://gumroad.com/js/gumroad.js"></script>
+
   <style>
     /* Album cover container limits width to avoid horizontal overflow */
     .album-cover {
@@ -70,7 +69,21 @@
   </style>
 </head>
 
+
 <body>
+  <!-- License Info Modal -->
+<div id="licenseModal" class="modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.7);">
+  <div class="modal-content" style="background:#fff; margin:10% auto; padding:20px; border-radius:8px; max-width:500px; position:relative;">
+    <span id="closeModal" style="position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;">&times;</span>
+    <h2>MP3 License Terms</h2>
+    <p>
+      By purchasing this track, you are granted a <strong>non-exclusive</strong>, <strong>non-transferable</strong> license to use this music for personal and commercial projects.<br><br>
+      You <strong>may not resell</strong>, redistribute, or claim ownership of the original recording.<br><br>
+      Attribution is appreciated but not required.<br><br>
+      For extended licenses or exclusive rights, please contact us.
+    </p>
+  </div>
+</div>
   <!-- Top Bar -->
   <header class="top-bar">
     <div class="logo-text">Asraelx Beats</div>
@@ -125,20 +138,39 @@
       </div>
     </div>
   </div>
-
+  
+          <button id="licenseInfoBtn" style="margin-top:1rem; padding:0.5rem 1rem; background:#555; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+  License Info
+</button>
   <div id="preview-notification">Preview ended. Please purchase to listen to full track.</div>
 
   <!-- Kits Section -->
   <!-- Kits Section -->
   <section class="kit-section" id="kits">
     <h2>Explore Our Kits</h2>
+    
     <div class="swiper kit-swiper">
       <div class="swiper-wrapper">
+        <div class="swiper-slide kit-card">
+          <img src="assets/trappianosloops.png" alt="Starter Kit Cover"
+            style="height: 30%; width:30%; border-radius: 8px; margin-bottom: 1rem;">
+          <h3>Starter Kit</h3>
+          <span>FREE</span>
+          <p style="font-size: 0.85rem;">
+            10 WAV & MP3 Trap Pianos Loops<br><br>
+            ✅ Royalty-free<br>
+            ✅ Works in any DAW
+          </p>
+          <a class="gumroad-button" href="https://asraelx.gumroad.com/l/trappianosloops" target="_blank"
+            style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block;">Buy
+            Now </a>
+        </div>
+
         <div class="swiper-slide kit-card">
           <img src="assets/lady.jpg" alt="Starter Kit Cover"
             style="height: 30%; width:30%; border-radius: 8px; margin-bottom: 1rem;">
           <h3>Starter Kit</h3>
-          <span>$4.99</span>
+          <span>FREE</span>
           <p style="font-size: 0.85rem;">
             100 WAV essentials: kicks, hats, shakers, claves & 808s.<br><br>
             ✅ For all levels<br>
@@ -147,7 +179,7 @@
           </p>
           <a class="gumroad-button" href="https://asraelx.gumroad.com/l/starterkit" target="_blank"
             style="margin-top: 0.5rem; padding: 0.5rem 1rem; border: none; background: #ffc439; color: #111; font-weight: bold; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block;">Buy
-            Now on</a>
+            Now </a>
         </div>
 
         <!-- Coming Soon Kits -->

@@ -188,3 +188,26 @@ gumroadBtn.addEventListener('click', (e) => {
   const gumroadURL = gumroadBtn.dataset.gumroad || 'https://asraelx.gumroad.com/l/layla'; // fallback
   window.open(gumroadURL + '?t=' + Date.now(), '_blank');
 });
+
+// -------------------------------------
+
+const licenseModal = document.getElementById("licenseModal");
+const licenseBtn = document.getElementById("licenseInfoBtn");
+const closeModal = document.getElementById("closeModal");
+
+// Show modal on button click
+licenseBtn.addEventListener("click", () => {
+  licenseModal.style.display = "block";
+});
+
+// Hide modal on close click
+closeModal.addEventListener("click", () => {
+  licenseModal.style.display = "none";
+});
+
+// Also hide modal when clicking outside modal content
+window.addEventListener("click", (event) => {
+  if (event.target === licenseModal) {
+    licenseModal.style.display = "none";
+  }
+});
